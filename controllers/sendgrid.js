@@ -1,7 +1,7 @@
 var sendgrid  = require('sendgrid')(process.env.SENDGRID_USERNAME,
   process.env.SENDGRID_PASSWORD);
 
-exports.sendEmailCard = function(email, subject, message, res){
+exports.sendEmailCard = function(email, subject, message){
 
   sendgrid.send({
     to: email,
@@ -12,7 +12,4 @@ exports.sendEmailCard = function(email, subject, message, res){
   if (err) { return console.error(err); }
     console.log(json);
   });
-  var response = {};
-    response.success = "Email sent!";
-    res.jsonp(response.success);
 };
