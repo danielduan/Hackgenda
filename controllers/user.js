@@ -14,7 +14,7 @@ exports.getLogin = function(req, res) {
   });
 };
 
-/*
+
 exports.getNumbers = function(cb){
   User.find({}, function (err, users) {
     if (err) {
@@ -30,7 +30,7 @@ exports.getNumbers = function(cb){
     }
     cb(null, nums);
   });
-};*/
+};
 
 exports.getEmails = function(cb){
   User.find({}, function (err, users) {

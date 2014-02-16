@@ -9,7 +9,7 @@ var _ = require('underscore');
 var graph = require('fbgraph');
 var Github = require('github-api');
 var Twit = require('twit');
-var twilio = require('twilio')(secrets.twilio.sid, secrets.twilio.token);
+var twilio = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_SECRET);
 
 /**
  * GET /api
@@ -109,10 +109,10 @@ exports.getTwilio = function(req, res, next) {
  * @param telephone
  */
 
-exports.postTwilio = function(req, res, next) {
+exports.postTwilio = function(message, numbers) {
   var message = {
     to: req.body.telephone,
-    from: '+13472235148',
+    from: '+15623928264',
     body: 'Hello from the Hackathon Starter'
   };
   twilio.sendMessage(message, function(err, responseData) {
