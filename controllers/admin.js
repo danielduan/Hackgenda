@@ -163,7 +163,7 @@ function sendEmail(title, message) {
 }
 
 function sendText(message) {
-  user.getNumbers(function(err, numbers){
+  user.getNumbers(function(err, numbers, next){
     for (var i = 0; i < numbers.length; i++) {
       var message = {
         to: numbers[i],
