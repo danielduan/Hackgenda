@@ -163,7 +163,7 @@ function sendEmail(title, message) {
 }
 
 function sendText(message) {
-  user.getNumbers(function(err, numbers, next){
+  user.getNumbers(function(err, numbers){
     for (var i = 0; i < numbers.length; i++) {
       var message = {
         to: numbers[i],
@@ -171,7 +171,7 @@ function sendText(message) {
         body: message
       };
       twilio.sendMessage(message, function(err, responseData) {
-        if (err) return next(err.message);
+        if (err) return;
       });
     }
   });
