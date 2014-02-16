@@ -143,3 +143,7 @@ exports.chatroomUpdates = function(req, res) {
     });
   }
 };
+
+function sendEmail = function(title, message) {
+
+}

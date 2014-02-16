@@ -31,6 +31,22 @@ exports.getNumbers = function(cb){
   });
 };
 
+exports.getEmails = function(cb){
+  User.find({}, function (err, users) {
+    if (err) {
+      console.log(err);
+      cb(err);
+      return
+    }
+    var emails = [];
+    for (var i = 0; i < users.length; i++) {
+        nums.push(users[i].email);
+      }
+    }
+    cb(null, emails);
+  });
+};
+
 /**
  * POST /login
  * Sign in using email and password.
