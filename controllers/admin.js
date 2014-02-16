@@ -2,6 +2,8 @@ var Schedule = require('../models/Schedule');
 var Sponsor = require('../models/Sponsor');
 var mobile = require('./mobile');
 var Push = require('../models/Push');
+var user = require('./user');
+var SendGrid = require('./sendgrid');
 
 exports.adminUpdates = function(req, res) {
   if (req.user && req.user.isAdmin) {
@@ -25,6 +27,9 @@ exports.postAdminUpdates = function(req, res) {
       } else {
         if (push.push) {
           mobile.pushAndroidMessage(push.name, push.message);
+        }
+        if (push.email) {
+          sendEmail(push.name, push.message);
         }
         req.flash('success', { msg: 'Message sent' } );
         res.redirect('admin/adminUpdates');
@@ -145,5 +150,10 @@ exports.chatroomUpdates = function(req, res) {
 };
 
 function sendEmail = function(title, message) {
-
+  user.getEmails(function(err, emails) {
+    for (var i = 0; i < emails.length; i++) {
+      console.log("sending email to " + emails[i]);
+      sendgrid.sendEmailCard(emails[i], title, message);
+    }
+  })
 }
