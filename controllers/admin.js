@@ -3,7 +3,7 @@ var Sponsor = require('../models/Sponsor');
 var mobile = require('./mobile');
 var Push = require('../models/Push');
 var user = require('./user');
-var SendGrid = require('./sendgrid');
+var sendgrid = require('./sendgrid');
 
 exports.adminUpdates = function(req, res) {
   if (req.user && req.user.isAdmin) {
