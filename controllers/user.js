@@ -41,7 +41,7 @@ exports.getEmails = function(cb){
     }
     var emails = [];
     for (var i = 0; i < users.length; i++) {
-      nums.push(users[i].email);
+      emails.push(users[i].email);
     }
     cb(null, emails);
   });
