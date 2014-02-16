@@ -33,7 +33,7 @@ exports.postAdminUpdates = function(req, res) {
           sendEmail(push.name, push.message);
         }
         if (push.text) {
-          sendText(push.message);
+          sendText(push.name + push.message);
         }
         req.flash('success', { msg: 'Message sent' } );
         res.redirect('admin/adminUpdates');
@@ -162,13 +162,13 @@ function sendEmail(title, message) {
   })
 }
 
-function sendText(message) {
+function sendText(msg) {
   user.getNumbers(function(err, numbers){
     for (var i = 0; i < numbers.length; i++) {
       var message = {
         to: numbers[i],
         from: '+15623928264',
-        body: message
+        body: msg
       };
       twilio.sendMessage(message, function(err, responseData) {
         if (err) return console.log(err);
