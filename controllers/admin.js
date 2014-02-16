@@ -7,7 +7,7 @@ var sendgrid = require('./sendgrid');
 var twilio = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_SECRET);
 
 exports.adminUpdates = function(req, res) {
-  if (req.user && req.user.isAdmin) {
+  if (req.user && (req.user.isAdmin || req.user.isSponsor)) {
     res.render('admin/adminUpdates', {
       title: 'Send Announcement'
     });
@@ -17,7 +17,7 @@ exports.adminUpdates = function(req, res) {
 };
 
 exports.postAdminUpdates = function(req, res) {
-  if (req.user && req.user.isAdmin) {
+  if (req.user && (req.user.isAdmin || req.user.isSponsor)) {
     var push = req.body;
     push.author = req.user.profile.name;
     console.log(push);
@@ -93,7 +93,7 @@ exports.sponsorUpdates = function(req, res) {
       req.flash('errors', errors);
       return req.redirect('admin/sponsorUpdates');
     }
-    if (req.user && req.user.isAdmin) {
+    if (req.user && (req.user.isAdmin || req.user.isSponsor)) {
       spsr = Sponsor.sortSponsor(spsr);
       res.render('admin/sponsorUpdates', {
         title: 'Update Sponsor',
@@ -109,7 +109,7 @@ exports.sponsorUpdates = function(req, res) {
 
 
 exports.postSponsorUpdates = function(req, res) {
-  if (req.user && req.user.isAdmin) {
+  if (req.user && (req.user.isAdmin || req.user.isSponsor)) {
     var sponsor = req.body;
     
     //console.log(sponsor);
@@ -146,7 +146,7 @@ exports.socialUpdates = function(req, res) {
 };
 
 exports.chatroomUpdates = function(req, res) {
-  if (req.user && req.user.isAdmin) {
+  if (req.user && (req.user.isAdmin || req.user.isSponsor)) {
     res.render('admin/chatroomUpdates', {
       title: 'Update Chatrooms'
     });
@@ -171,7 +171,7 @@ function sendText(message) {
         body: message
       };
       twilio.sendMessage(message, function(err, responseData) {
-        if (err) return;
+        if (err) return console.log(err);
       });
     }
   });
