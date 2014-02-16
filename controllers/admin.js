@@ -20,7 +20,7 @@ exports.postAdminUpdates = function(req, res) {
   if (req.user && (req.user.isAdmin || req.user.isSponsor)) {
     var push = req.body;
     push.author = req.user.profile.name;
-    console.log(push);
+    //console.log(push);
     Push.addPush(push, function(err, up) {
       if (err) {
         req.flash('error pushing update');
@@ -156,7 +156,7 @@ exports.chatroomUpdates = function(req, res) {
 function sendEmail(title, message) {
   user.getEmails(function(err, emails) {
     for (var i = 0; i < emails.length; i++) {
-      console.log("sending email to " + emails[i]);
+      //console.log("sending email to " + emails[i]);
       sendgrid.sendEmailCard(emails[i], title, message);
     }
   })
