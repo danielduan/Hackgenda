@@ -30,7 +30,7 @@ exports.addEvent = function(dayname, evnt, cb) {
   Schedule.findOne({day:dayname}, function(err, day) {
     //console.log(day);
     //console.log(day.day);
-    if (err || !day.day) {
+    if (err || !day) {
       var schedule = new Schedule({
         day: dayname,
         events: [evnt],
