@@ -15,10 +15,6 @@
           a(href='/schedule') Schedule
         li(class=title=='Sponsors'?'active':undefined)
           a(href='/sponsors') Sponsors
-        li(class=title=='Awards'?'active':undefined)
-          a(href='/awards') Awards
-        li(class=title=='Social'?'active':undefined)
-          a(href='/social') Social
         li(class=title=='Chat'?'active:':undefined)
           a(href='/chat') Chat
         
@@ -36,9 +32,9 @@
                 | Sponsor&nbsp;
                 i.caret
               ul.dropdown-menu
-                li: a(href='/admin/sponsorUpdates') Update Sponsors
+                li: a(href='/admin/adminUpdates') Send Announcement
                 li.divider
-                li: a(href='/admin/awardsUpdates') Update Awards
+                li: a(href='/admin/sponsorUpdates') Update Sponsors
                 li.divider
                 li: a(href='/admin/chatroomUpdates') Update Chatrooms
           if user.isAdmin
@@ -52,10 +48,6 @@
                 li: a(href='/admin/scheduleUpdates') Update Schedule
                 li.divider
                 li: a(href='/admin/sponsorUpdates') Update Sponsors
-                li.divider
-                li: a(href='/admin/awardsUpdates') Update Awards
-                li.divider
-                li: a(href='/admin/socialUpdates') Update Social
                 li.divider
                 li: a(href='/admin/chatroomUpdates') Update Chatrooms
           li.dropdown(class=title=='Account Management'?'active':undefined)
