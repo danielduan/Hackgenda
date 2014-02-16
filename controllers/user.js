@@ -14,6 +14,7 @@ exports.getLogin = function(req, res) {
   });
 };
 
+/*
 exports.getNumbers = function(cb){
   User.find({}, function (err, users) {
     if (err) {
@@ -29,7 +30,7 @@ exports.getNumbers = function(cb){
     }
     cb(null, nums);
   });
-};
+};*/
 
 exports.getEmails = function(cb){
   User.find({}, function (err, users) {
@@ -40,8 +41,7 @@ exports.getEmails = function(cb){
     }
     var emails = [];
     for (var i = 0; i < users.length; i++) {
-        nums.push(users[i].email);
-      }
+      nums.push(users[i].email);
     }
     cb(null, emails);
   });
