@@ -149,7 +149,7 @@ exports.chatroomUpdates = function(req, res) {
   }
 };
 
-function sendEmail = function(title, message) {
+function sendEmail(title, message) {
   user.getEmails(function(err, emails) {
     for (var i = 0; i < emails.length; i++) {
       console.log("sending email to " + emails[i]);
